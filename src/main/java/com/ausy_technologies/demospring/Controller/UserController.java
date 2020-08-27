@@ -72,5 +72,28 @@ public class UserController {
         this.userService.deleteUserById(id);
 
     }
+    @DeleteMapping("/deleteRoleById/{id}")
+    public void deleteRole(@PathVariable int id){
+        this.userService.deleteRoleById(id);
+    }
 
+    @PutMapping("/updateUser/{id}")
+    public User updateUser(@RequestBody User user, @PathVariable int id){
+        User userToUpdate = userService.findUserById(id);
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setUsername(user.getUsername());
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setBirthday(user.getBirthday());
+        userToUpdate.setRoleList(user.getRoleList());
+        return this.userService.saveUser(userToUpdate);
+    }
+
+    @PutMapping("/updateRole/{id}")
+    public Role updateRole(@RequestBody Role role, @PathVariable int id){
+        Role roleToUpdate = userService.findRoleById(id);
+        roleToUpdate.setName(role.getName());
+        return this.userService.saveRole(roleToUpdate);
+    }
 }
