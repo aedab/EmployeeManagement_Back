@@ -65,6 +65,9 @@ public class UserService {
     }
 
 
+    public User findUserById(int id){
+        return this.userRepository.findById(id);
+    }
 
     public Role findRoleById(int id)
     {
@@ -87,6 +90,10 @@ public class UserService {
     public void deleteUserById(int id)
     {
          this.userRepository.deleteById(id);
+    }
+
+    public void deleteRoleById(int id){
+        this.roleRepository.deleteById(id);
     }
 
 
